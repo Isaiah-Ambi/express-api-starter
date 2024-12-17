@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = require('/../config/environment');
+const { JWT_SECRET } = require('../config/environment');
 const User = require('../models/user.model');
 
 const authMiddleware = async (req, res, next) => {
     try {
         const token = req.header('Authorization')?.replace('Bearer ', '');
-
+        console.log(token)
         if (!token) {
             return res.status(401).json({ error: 'Authentication required' });
 
@@ -13,8 +13,8 @@ const authMiddleware = async (req, res, next) => {
 
         const decoded = jwt.verify(token, JWT_SECRET);
         const user = await User.findOne({
-            _id: decode.id,
-            email: decode.email
+            _id: decoded.id,
+            email: decoded.email
         });
 
         if (!user) {

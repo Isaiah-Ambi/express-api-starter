@@ -8,6 +8,13 @@
     "lint": "eslint .",
     "test": "jest"
   },
+  "jest": {
+  "testEnvironment": "node",
+  "coveragePathIgnorePatterns": [
+    "/node_modules/",
+    "/src/config/"
+  ]
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
